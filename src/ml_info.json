@@ -1,0 +1,173 @@
+{
+    "maps": [
+      {
+        "WAD": "ATTACK.WAD",
+        "Name": "Attack",
+        "PC": 1,
+        "PSX": 1,
+        "Xbox": 1,
+        "PSN": 1
+      },
+      {
+        "WAD": "CANYON.WAD",
+        "Name": "Canyon",
+        "PC": 1,
+        "PSX": 3,
+        "Xbox": 4,
+        "PSN": 2
+      },
+      {
+        "WAD": "CATWALK.WAD",
+        "Name": "The Catwalk",
+        "PC": 1,
+        "PSX": 5,
+        "Xbox": 5,
+        "PSN": 3
+      },
+      {
+        "WAD": "COMBINE.WAD",
+        "Name": "The Combine",
+        "PC": 1,
+        "PSX": 4,
+        "Xbox": 6,
+        "PSN": 4
+      },
+      {
+        "WAD": "FISTULA.WAD",
+        "Name": "The Fistula",
+        "PC": 1,
+        "PSX": 6,
+        "Xbox": 7,
+        "PSN": 5
+      },
+      {
+        "WAD": "GARRISON.WAD",
+        "Name": "The Garrison",
+        "PC": 1,
+        "PSX": null,
+        "Xbox": 8,
+        "PSN": 6
+      },
+      {
+        "WAD": "MANOR.WAD",
+        "Name": "Titan Manor",
+        "PC": 1,
+        "PSX": null,
+        "Xbox": 10,
+        "PSN": 7
+      },
+      {
+        "WAD": "PARADOX.WAD",
+        "Name": "Paradox",
+        "PC": 1,
+        "PSX": 10,
+        "Xbox": null,
+        "PSN": 8
+      },
+      {
+        "WAD": "SUBSPACE.WAD",
+        "Name": "Subspace",
+        "PC": 1,
+        "PSX": 11,
+        "Xbox": 12,
+        "PSN": 9
+      },
+      {
+        "WAD": "SUBTERRA.WAD",
+        "Name": "Subterra",
+        "PC": 1,
+        "PSX": 12,
+        "Xbox": 13,
+        "PSN": 10
+      },
+      {
+        "WAD": "TTRAP.WAD",
+        "Name": "Trapped on Titan",
+        "PC": 1,
+        "PSX": null,
+        "Xbox": 16,
+        "PSN": 11
+      },
+      {
+        "WAD": "VIRGIL.WAD",
+        "Name": "Virgil's Lead",
+        "PC": 3,
+        "PSX": 2,
+        "Xbox": 18,
+        "PSN": 12
+      },
+      {
+        "WAD": "MINOS.WAD",
+        "Name": "Minos' Judgement",
+        "PC": 5,
+        "PSX": 8,
+        "Xbox": null,
+        "PSN": 13
+      },
+      {
+        "WAD": "BLOODSEA.WAD",
+        "Name": "Bloodsea Keep",
+        "PC": 7,
+        "PSX": null,
+        "Xbox": 3,
+        "PSN": 14
+      },
+      {
+        "WAD": "MEPHISTO.WAD",
+        "Name": "Mephisto's Maosoleum",
+        "PC": 7,
+        "PSX": null,
+        "Xbox": null,
+        "PSN": 15
+      },
+      {
+        "WAD": "NESSUS.WAD",
+        "Name": "Nessus",
+        "PC": 7,
+        "PSX": 9,
+        "Xbox": 11,
+        "PSN": 16
+      },
+      {
+        "WAD": "GERYON.WAD",
+        "Name": "Geryon",
+        "PC": 8,
+        "PSX": 7,
+        "Xbox": 9,
+        "PSN": 17
+      },
+      {
+        "WAD": "VESPERAS.WAD",
+        "Name": "Vesperas",
+        "PC": 9,
+        "PSX": 13,
+        "Xbox": 17,
+        "PSN": 18
+      },
+      {
+        "WAD": "BLACKTWR.WAD",
+        "Name": "Black Tower",
+        "PC": 25,
+        "PSX": null,
+        "Xbox": 2,
+        "PSN": 19
+      },
+      {
+        "WAD": "TEETH.WAD",
+        "Name": "The Express Elevator to Hell",
+        "PC": 31,
+        "PSX": null,
+        "Xbox": 14,
+        "PSN": 20
+      },
+      {
+        "WAD": "TEETH.WAD",
+        "Name": "Bad Dream",
+        "PC": 32,
+        "PSX": null,
+        "Xbox": 15,
+        "PSN": 21
+      }
+    ]
+  }
+  

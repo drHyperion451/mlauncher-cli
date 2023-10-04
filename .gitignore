@@ -5,3 +5,7 @@
 /mldoom2
 /pyenv
 /screenshots
+notes_*
+
+# Python:
+__pycache__/

@@ -5,63 +5,80 @@ from textual.widgets import Header, Footer, Static, Placeholder, Label, Button
 
 from time import time
 
+# MODULES:
+import jsonUtils
+
+# GLOBAL PARAMS
+JSON_FILEPATH = 'src/ml_info.json'
+
+# GLOBAL BOOLS
 QUICK_EXIT = False
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
 
 
 class MenuHeader(Static):
-    DEFAULT_CSS = """
-    MenuHeader {
-        height: 3;
-        dock: top;
-        content-align: right middle;
-    }
-    #menuQuitButton {
-        dock: right;
-        margin-right: 0
-    }
-    .menuButtons {
-        height: 3;
-        margin-right: 1
-    }
+    """ Top bar menu static Widget """
 
-    """
     def compose(self) -> ComposeResult:
         yield Horizontal(
-            Button("Game", "primary", id="buttonGame", classes='menuButtons'),
-            Button("Wads", "primary", id="wadsButton", classes='menuButtons'),
-            Button("Options", "primary", id="optionsButton", classes='menuButtons', disabled=True,),
+            Button("Game", "primary", id="buttonGame", classes='menuButtons', disabled=True),
+            Button("Wads", "primary", id="wadsButton", classes='menuButtons', disabled=True),
+            Button("Options", "primary", id="optionsButton", classes='menuButtons', disabled=True),
             Button("Quit", "error", id="menuQuitButton", classes='menuButtons')
         )
-class pwadList(Placeholder):
-    DEFAULT_CSS= """
-    pwadList {
-        width: 20
-    }
-    """
-    pass
-class pwadDesc(Placeholder):
-    DEFAULT_CSS = """
-    pwadDesc {
-    }
-    """
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        match event.button.id:
+            case "buttonGame":
+                pass
+            case "wadsButton":
+                pass
+            case "optionsButton":
+                self.app.push_screen(OptionsScreen(classes='DialogScreen'))
+            case "menuQuitButton":
+                self.app.push_screen(QuitScreen(classes='DialogScreen'))
+
+class OptionsScreen(Screen):
+    classes = 'dialogScreen'
+    def compose(self) -> ComposeResult:
+        yield Grid(
+            Label("Options", id='optionsTitle', classes='popupDialogTitle'),
+            Button("Cancel", 'default', id="optionsCancel", classes='popupButton'),
+            id="optionsDialog",
+            classes='dialogGrid'
+        )
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        match event.button.id:
+            case 'optionsCancel':
+                self.app.pop_screen()
+        
     
 class pwadMain(Screen):
-    CSS = """
-    pwadMain {
-    }
-
-    """
+    CSS_PATH = 'css/pwadMain.tcss'
     def compose(self) -> ComposeResult:
         yield Horizontal(
             pwadList(id='pwadList'),
-            pwadDesc(id='pwadDesc')
+            pwadInfo(id='pwadInfo')
         )
             
+class pwadList(Placeholder):
+    pass
+
+
+class pwadDesc(Placeholder):
+    def compose(self) -> ComposeResult:
+        yield Button("Launch File", variant='success', id='launchButton')
+    pass
+
+class pwadInfo(Placeholder):
+    def compose(self) -> ComposeResult:
+        yield pwadDesc(id='pwadDesc')
+    
+
+
 
 class MLauncherApp(App):
     """Main Textual App for MLauncher."""
-
+    CSS_PATH = 'css/mlauncher.tcss'
     BINDINGS = [("q", "request_quit", "Quit"), 
                 ("d", "toggle_dark", "Dark mode")]
 
@@ -79,22 +96,26 @@ class MLauncherApp(App):
     def action_request_quit(self) -> None:
         """ Action that quits the app."""
         if QUICK_EXIT: self.app.exit()
-        self.push_screen(QuitScreen())
+        self.push_screen(QuitScreen(classes='DialogScreen'))
 
 class QuitScreen(Screen):
-    CSS_PATH = 'css/quit.tcss'
+
     def compose(self) -> ComposeResult:
         yield Grid(
-            Label(QuitMsg(), id="question"),
-            Button("Quit", variant='error', id="buttonQuit"),
-            Button("Cancel", variant='primary', id='buttonCancel'),
-            id='closeDialog'
+            Label(QuitMsg(), id="question", classes='popupDialogText'),
+            Button("Quit", variant='error', id="buttonQuit", classes='popupButton'),
+            Button("Cancel", variant='primary', id='buttonCancel', classes='popupButton'),
+            id='closeDialog',
+            classes='dialogGrid'
         )
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == 'buttonQuit':
             self.app.exit()
         else:
             self.app.pop_screen()
+    
+
+# Misc Functions
 def QuitMsg() -> str:
     """Funny Doom II tribute.
 
@@ -102,11 +123,11 @@ def QuitMsg() -> str:
         str: Returns a random quit message when called.
     """
     quit_messages = [
-        "I wouldn't leave if I were you. DOS is much worse.",
+        "I wouldn't leave if I were you. The terminal is much worse.",
         "Don't leave yet. There's a demon around that corner.",
         "Ya know, next time you come in here I'm gonna toast ya.",
         "Go ahead and leave. See if I care.",
-        "Are you sure you want to quit this great game?",
+        "Are you sure you want to quit this great launcher?",
         "You want to quit? Then, thou hast lost an eighth!",
         "Get outta here and go back to your boring life!",
         "I'm sure you'll be back soon.",
@@ -127,5 +148,4 @@ def QuitMsg() -> str:
 
 
 if __name__ == '__main__':
-    app = MLauncherApp()
-    app.run()
+    MLauncherApp().run()
