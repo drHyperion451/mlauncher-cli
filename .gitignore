@@ -6,6 +6,9 @@
 /pyenv
 /screenshots
 notes_*
+.env
 
 # Python:
 __pycache__/
+/build
+/dist

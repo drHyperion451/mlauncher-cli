@@ -1,20 +1,29 @@
 from textual.app import App, ComposeResult
-from textual.containers import Grid, Horizontal
+from textual.containers import Grid, Horizontal, VerticalScroll
 from textual.screen import Screen
 from textual.widgets import Header, Footer, Static, Placeholder, Label, Button
 
 from time import time
+import os
 
 # MODULES:
 import jsonUtils
+import launch
 
 # GLOBAL PARAMS
 JSON_FILEPATH = 'src/ml_info.json'
+SOURCEPORT = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/dsda-doom'
+IWAD = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/DOOM2.WAD'
+ML_PATH = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/wads/master_levels'
+
 
 # GLOBAL BOOLS
-QUICK_EXIT = False
+QUICK_EXIT = True
+
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
 
+# DotEnvs. Should be removed
+from dotenv import load_dotenv
 
 class MenuHeader(Static):
     """ Top bar menu static Widget """
@@ -60,25 +69,37 @@ class pwadMain(Screen):
             pwadInfo(id='pwadInfo')
         )
             
-class pwadList(Placeholder):
-    pass
+class pwadList(VerticalScroll):
 
+    def compose(self) -> ComposeResult:
+        wads = jsonUtils.MapsJson(JSON_FILEPATH).get_all_wads_ordered('PSN',
+            displayExtension=False)
+        
+        for eachWad in wads:
+            yield Button(eachWad, id=eachWad)
+    def on_button_pressed(self, event: Button.Pressed):
+        global SELECTED_FILE
+        SELECTED_FILE = event.button.id + '.WAD'
+        pass
+        
 
-class pwadDesc(Placeholder):
+class pwadDesc(Static):
     def compose(self) -> ComposeResult:
         yield Button("Launch File", variant='success', id='launchButton')
-    pass
+    
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if SELECTED_FILE:
+            master_wad = f"{ML_PATH}/{SELECTED_FILE}"
+            launch.game(SOURCEPORT, IWAD, master_wad)
 
 class pwadInfo(Placeholder):
     def compose(self) -> ComposeResult:
         yield pwadDesc(id='pwadDesc')
     
 
-
-
 class MLauncherApp(App):
     """Main Textual App for MLauncher."""
-    CSS_PATH = 'css/mlauncher.tcss'
+    CSS_PATH = './css/mlauncher.tcss'
     BINDINGS = [("q", "request_quit", "Quit"), 
                 ("d", "toggle_dark", "Dark mode")]
 
@@ -148,4 +169,9 @@ def QuitMsg() -> str:
 
 
 if __name__ == '__main__':
+    load_dotenv()
+    SOURCEPORT = os.getenv('SOURCEPORT')
+    IWAD = os.getenv('IWAD')
+    ML_PATH = os.getenv('ML_PATH')
     MLauncherApp().run()
+

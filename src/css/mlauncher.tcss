@@ -16,7 +16,8 @@ MenuHeader {
 
 /* MAIN CONTENTS */
 #pwadList {
-    width: 25%
+    width: 25%;
+    overflow-y: scroll;
 }
 #pwadDesc {
     width: 75%;
