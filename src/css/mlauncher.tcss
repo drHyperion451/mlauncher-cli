@@ -16,14 +16,24 @@ MenuHeader {
 
 /* MAIN CONTENTS */
 #pwadList {
-    width: 25%;
+    width: 18%;
     overflow-y: scroll;
 }
-#pwadDesc {
+#pwadInfo {
     width: 75%;
     height:100%
 }
+#title {
+    text-align: center;
+    text-style: bold;
+    width: 100%;
 
+}
+#author {
+    text-align: center;
+    text-style: italic;
+    width: 100%;
+}
 #launchButton {
     dock: bottom;
     width: 100%;

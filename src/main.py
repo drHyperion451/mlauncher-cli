@@ -1,7 +1,9 @@
 from textual.app import App, ComposeResult
 from textual.containers import Grid, Horizontal, VerticalScroll
+from textual.reactive import reactive
+from textual.widget import Widget
 from textual.screen import Screen
-from textual.widgets import Header, Footer, Static, Placeholder, Label, Button
+from textual.widgets import Header, Footer, Static, Placeholder, Label, Button, Pretty
 
 from time import time
 import os
@@ -15,7 +17,7 @@ JSON_FILEPATH = 'src/ml_info.json'
 SOURCEPORT = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/dsda-doom'
 IWAD = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/DOOM2.WAD'
 ML_PATH = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/wads/master_levels'
-
+SELECTED_FILE = 'ATTACK.WAD'
 
 # GLOBAL BOOLS
 QUICK_EXIT = True
@@ -61,14 +63,20 @@ class OptionsScreen(Screen):
                 self.app.pop_screen()
         
     
-class pwadMain(Screen):
+class pwadMain(Static):
     CSS_PATH = 'css/pwadMain.tcss'
     def compose(self) -> ComposeResult:
         yield Horizontal(
             pwadList(id='pwadList'),
             pwadInfo(id='pwadInfo')
         )
-            
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        # Refresh if the user selects map:
+        if 'map-buttons' in event.button.classes:
+            SELECTED_FILE = event.button.id + '.WAD'
+            # Change the title
+            self.query_one("#title").str_body = SELECTED_FILE
+
 class pwadList(VerticalScroll):
 
     def compose(self) -> ComposeResult:
@@ -76,26 +84,36 @@ class pwadList(VerticalScroll):
             displayExtension=False)
         
         for eachWad in wads:
-            yield Button(eachWad, id=eachWad)
+            yield Button(eachWad, id=eachWad, classes="map-buttons")
     def on_button_pressed(self, event: Button.Pressed):
-        global SELECTED_FILE
-        SELECTED_FILE = event.button.id + '.WAD'
         pass
         
 
-class pwadDesc(Static):
+class pwadInfo(Static):
+
     def compose(self) -> ComposeResult:
-        yield Button("Launch File", variant='success', id='launchButton')
-    
+        yield PwadLabel(id='title')
+        yield PwadLabel(id='author')
+        yield Button("LAUNCH", variant='success', id='launchButton')
+
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if SELECTED_FILE:
             master_wad = f"{ML_PATH}/{SELECTED_FILE}"
             launch.game(SOURCEPORT, IWAD, master_wad)
 
-class pwadInfo(Placeholder):
-    def compose(self) -> ComposeResult:
-        yield pwadDesc(id='pwadDesc')
-    
+class PwadLabel(Widget):
+    """Dynamic Label for any given name"""
+    DEFAULT_CSS = """
+    PwadLabel {
+        width: auto;
+        height: auto; 
+    }
+    """
+    str_body = reactive(SELECTED_FILE)
+    def render(self) -> str:
+
+        return f" {self.str_body}"
+
 
 class MLauncherApp(App):
     """Main Textual App for MLauncher."""
@@ -170,8 +188,10 @@ def QuitMsg() -> str:
 
 if __name__ == '__main__':
     load_dotenv()
+    maps = jsonUtils.MapsJson(JSON_FILEPATH)
     SOURCEPORT = os.getenv('SOURCEPORT')
     IWAD = os.getenv('IWAD')
     ML_PATH = os.getenv('ML_PATH')
+
     MLauncherApp().run()
 
