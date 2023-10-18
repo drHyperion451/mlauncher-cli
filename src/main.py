@@ -66,6 +66,7 @@ class pwadMain(Static):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         # Refresh if the user selects map:
         if 'map-buttons' in event.button.classes:
+            global SELECTED_FILE
             SELECTED_FILE = event.button.id + '.WAD'
             # Change the title
             self.query_one("#title").str_body = SELECTED_FILE
