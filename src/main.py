@@ -11,16 +11,9 @@ import os
 # MODULES:
 import jsonUtils
 import launch
+from infoWidgets import *
 
-# GLOBAL PARAMS
-JSON_FILEPATH = 'src/ml_info.json'
-SOURCEPORT = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/dsda-doom'
-IWAD = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/DOOM2.WAD'
-ML_PATH = '/Users/drHyperion451/Documents/PROYECTOS/dsda-doom/build/wads/master_levels'
-SELECTED_FILE = 'ATTACK.WAD'
-
-# GLOBAL BOOLS
-QUICK_EXIT = True
+from globals import *
 
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
 
@@ -68,7 +61,7 @@ class pwadMain(Static):
     def compose(self) -> ComposeResult:
         yield Horizontal(
             pwadList(id='pwadList'),
-            pwadInfo(id='pwadInfo')
+            pwadContents(id='pwadContents')
         )
     def on_button_pressed(self, event: Button.Pressed) -> None:
         # Refresh if the user selects map:
@@ -76,24 +69,27 @@ class pwadMain(Static):
             SELECTED_FILE = event.button.id + '.WAD'
             # Change the title
             self.query_one("#title").str_body = SELECTED_FILE
+            self.query_one('#author').str_body = maps.get_from_data('WAD', SELECTED_FILE, 'Author')[0]
 
 class pwadList(VerticalScroll):
 
     def compose(self) -> ComposeResult:
-        wads = jsonUtils.MapsJson(JSON_FILEPATH).get_all_wads_ordered('PSN',
-            displayExtension=False)
-        
+        wads = maps.get_all_wads_ordered('PSN', displayExtension=False)
+
         for eachWad in wads:
             yield Button(eachWad, id=eachWad, classes="map-buttons")
+        
     def on_button_pressed(self, event: Button.Pressed):
         pass
         
-
 class pwadInfo(Static):
-
     def compose(self) -> ComposeResult:
-        yield PwadLabel(id='title')
-        yield PwadLabel(id='author')
+        yield PwadTitle(id='title')
+        yield PwadAuthor(id='author')
+
+class pwadContents(Static):
+    def compose(self) -> ComposeResult:
+        yield pwadInfo()
         yield Button("LAUNCH", variant='success', id='launchButton')
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -101,18 +97,7 @@ class pwadInfo(Static):
             master_wad = f"{ML_PATH}/{SELECTED_FILE}"
             launch.game(SOURCEPORT, IWAD, master_wad)
 
-class PwadLabel(Widget):
-    """Dynamic Label for any given name"""
-    DEFAULT_CSS = """
-    PwadLabel {
-        width: auto;
-        height: auto; 
-    }
-    """
-    str_body = reactive(SELECTED_FILE)
-    def render(self) -> str:
 
-        return f" {self.str_body}"
 
 
 class MLauncherApp(App):
