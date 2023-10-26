@@ -29,4 +29,4 @@ This proyect runs using the [`Textual`](https://textual.textualize.io) Python li
 [issues-shield]: https://img.shields.io/github/issues/drHyperion451/MLauncher.svg?style=for-the-badge
 [issues-url]: https://github.com/drHyperion451/MLauncher/issues
 [license-shield]: https://img.shields.io/github/license/drHyperion451/MLauncher.svg?style=for-the-badge
-[license-url]: https://github.com/drHyperion451/MLauncher/blob/master/COPYIING
+[license-url]: https://github.com/drHyperion451/MLauncher/blob/master/COPYING
