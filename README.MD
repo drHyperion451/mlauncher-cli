@@ -8,6 +8,9 @@
 <div style="text-align:center">
 <b style="color:crimson;">This project is still on pre-apha. Please, be nice! :)</b>
 </div>
+
+![Windows Screenshot](https://github.com/drHyperion451/mlauncher-cli/blob/master/assets/screenshot1.png?raw=true)
+
 A cross-platform, classic style DOOM launcher for [Master Levels for DOOM II](https://store.steampowered.com/app/9160/Master_Levels_for_Doom_II/).
 
 ## Getting Started
