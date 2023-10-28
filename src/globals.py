@@ -6,12 +6,17 @@ import os
 # Some of them are placeholders. TODO: Make configs and change the params
 home = Path.home()
 
+JSON_FILEPATH = 'src/ml_info.json'
 try: 
-    os.chdir(sys._MEIPASS)
+    """
+    This is needed if you want to freeze the script. If not, it won't load
+    correctly. 
+    """
+    JSON_FILEPATH = f"{sys._MEIPASS}/src/ml_info.json"
 except (NameError, AttributeError) as error:
     print(f"{error}. Expected to be running as script, not frozen.")
 
-JSON_FILEPATH = 'src/ml_info.json'
+
 SELECTED_FILE = 'ATTACK.WAD'
 
 # GLOBAL BOOLS
