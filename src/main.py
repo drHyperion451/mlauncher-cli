@@ -175,6 +175,9 @@ def QuitMsg() -> str:
 
 if __name__ == '__main__':
     load_dotenv()
+    # Renames terminal tab if avaliable:
+    sys.stdout.write("\x1b]2;%s\x07" % 'MLauncher')
+
     # Loads config file or creates it with default info:
     config = configparser.ConfigParser()
     if not os.path.exists('config.ini'):
