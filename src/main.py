@@ -175,8 +175,9 @@ def QuitMsg() -> str:
 
 if __name__ == '__main__':
     load_dotenv()
+    # Loads config file or creates it with default info:
     config = configparser.ConfigParser()
-    if not os.path.exists('mlauncher.ini'):
+    if not os.path.exists('config.ini'):
         config['GAME'] = {'SOURCEPORT': './dsda-doom/dsda-doom.exe',
                         'IWAD': './doom2/DOOM2.WAD',
                         'ML_PATH': './master/wads'}
