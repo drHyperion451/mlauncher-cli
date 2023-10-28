@@ -8,6 +8,9 @@
 notes_*
 .env
 *.spec
+/doom2
+/master
+/dsda-doom
 
 # Python:
 __pycache__/

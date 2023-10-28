@@ -1,0 +1,1 @@
+pyinstaller src/main.py -y -D --add-data src/ml_info.json:src --add-data src/css/mlauncher.tcss:css -n MLauncher --paths=E:\Users\drhyperion\Documentos\GitHub\mlauncher-cli\pyenv\Lib\site-packages

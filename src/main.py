@@ -7,6 +7,7 @@ from textual.widgets import Header, Footer, Static, Placeholder, Label, Button, 
 
 from time import time
 import os
+import configparser
 
 # MODULES:
 import jsonUtils
@@ -174,10 +175,21 @@ def QuitMsg() -> str:
 
 if __name__ == '__main__':
     load_dotenv()
+    config = configparser.ConfigParser()
+    if not os.path.exists('mlauncher.ini'):
+        config['GAME'] = {'SOURCEPORT': './dsda-doom/dsda-doom.exe',
+                        'IWAD': './doom2/DOOM2.WAD',
+                        'ML_PATH': './master/wads'}
+        
+        with open('config.ini', 'w') as configfile:
+            config.write(configfile)
+
+    config.read('config.ini')
+
     maps = jsonUtils.MapsJson(JSON_FILEPATH)
-    SOURCEPORT = os.getenv('SOURCEPORT')
-    IWAD = os.getenv('IWAD')
-    ML_PATH = os.getenv('ML_PATH')
+    SOURCEPORT = config.get('GAME', 'SOURCEPORT')
+    IWAD = config.get('GAME', 'IWAD')
+    ML_PATH = config.get('GAME', 'ML_PATH')
 
     MLauncherApp().run()
 
