@@ -81,13 +81,13 @@ Building is a mess right now because of some differences between OS and Textual 
 5. If you want to freeze the proyect, run `pyinstaller build.sh`. or use `build.bat` instead on Windows.
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/drHyperion451/MLauncher.svg?style=for-the-badge
-[contributors-url]: https://github.com/drHyperion451/MLauncher/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/drHyperion451/MLauncher.svg?style=for-the-badge
-[forks-url]: https://github.com/drHyperion451/MLauncher/network/members
-[stars-shield]: https://img.shields.io/github/stars/drHyperion451/MLauncher.svg?style=for-the-badge
-[stars-url]: https://github.com/drHyperion451/MLauncher/stargazers
-[issues-shield]: https://img.shields.io/github/issues/drHyperion451/MLauncher.svg?style=for-the-badge
-[issues-url]: https://github.com/drHyperion451/MLauncher/issues
-[license-shield]: https://img.shields.io/github/license/drHyperion451/MLauncher.svg?style=for-the-badge
-[license-url]: https://github.com/drHyperion451/MLauncher/blob/master/COPYING
+[contributors-shield]: https://img.shields.io/github/contributors/drHyperion451/mlauncher-cli.svg?style=for-the-badge
+[contributors-url]: https://github.com/drHyperion451/mlauncher-cli/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/drHyperion451/mlauncher-cli.svg?style=for-the-badge
+[forks-url]: https://github.com/drHyperion451/mlauncher-cli/network/members
+[stars-shield]: https://img.shields.io/github/stars/drHyperion451/mlauncher-cli.svg?style=for-the-badge
+[stars-url]: https://github.com/drHyperion451/mlauncher-cli/stargazers
+[issues-shield]: https://img.shields.io/github/issues/drHyperion451/mlauncher-cli.svg?style=for-the-badge
+[issues-url]: https://github.com/drHyperion451/mlauncher-cli/issues
+[license-shield]: https://img.shields.io/github/license/drHyperion451/mlauncher-cli.svg?style=for-the-badge
+[license-url]: https://github.com/drHyperion451/mlauncher-cli/blob/master/COPYING
