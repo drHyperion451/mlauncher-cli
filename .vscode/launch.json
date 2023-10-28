@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "console": "integratedTerminal",
+            "console": "externalTerminal",
             "justMyCode": true,
             "autoReload": {
                 "enable": false
@@ -20,7 +20,7 @@
             "type": "python",
             "request": "launch",
             "program": "./src/main.py",
-            "console": "integratedTerminal",
+            "console": "externalTerminal",
             "justMyCode": true,
             "autoReload": {
                 "enable": false
