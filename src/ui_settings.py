@@ -1,10 +1,8 @@
 from textual.app import ComposeResult
 from textual.containers import Grid
 from textual.screen import Screen
-from textual.widgets import Label, Button, Placeholder
+from textual.widgets import Label, Button
 
-from configparser import ConfigParser
-import os
 from globals import *
 
 
