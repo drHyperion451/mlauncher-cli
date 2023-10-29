@@ -10,9 +10,9 @@ import os
 import configparser
 
 # MODULES:
-import jsonUtils
-import launch
-from infoWidgets import *
+import i_jsonUtils
+import g_launch
+from i_infoWidgets import *
 from ui_quit import QuitScreen
 from ui_settings import SettingsScreen, Settings
 from globals import *
@@ -81,7 +81,7 @@ class pwadContents(Static):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if SELECTED_FILE:
             master_wad = f"{ML_PATH}/{SELECTED_FILE}"
-            launch.game(SOURCEPORT, IWAD, master_wad)
+            g_launch.game(SOURCEPORT, IWAD, master_wad)
 
 
 class MLauncherApp(App):
@@ -114,7 +114,7 @@ if __name__ == '__main__':
     # Renames terminal tab if avaliable:
     sys.stdout.write("\x1b]2;%s\x07" % 'MLauncher')
     
-    maps = jsonUtils.MapsJson(JSON_FILEPATH)
+    maps = i_jsonUtils.MapsJson(JSON_FILEPATH)
 
     # Loads config file or creates it with default info:
     config = Settings('config.ini')

@@ -2,7 +2,7 @@ from textual.widget import Widget
 from textual.reactive import reactive
 
 from globals import *
-from jsonUtils import MapsJson
+from i_jsonUtils import MapsJson
 
 class PwadTitle(Widget):
     """Dynamic Label for any given name"""
