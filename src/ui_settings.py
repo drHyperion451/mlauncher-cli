@@ -5,23 +5,7 @@ from textual.widgets import Label, Button, Placeholder
 
 from configparser import ConfigParser
 import os
-
-    
-class Settings():
-    """Creates config.ini if not created. Dictates which stuff should be inside
-    it, and reads it."""
-    def __init__(self, settings_path='config.ini') -> None:
-        self.config = ConfigParser()
-        if not os.path.exists(settings_path):
-            self.config['GAME'] = {'SOURCEPORT': './dsda-doom/dsda-doom.exe',
-                            'IWAD': './doom2/DOOM2.WAD',
-                            'ML_PATH': './master/wads'}
-            
-            with open(settings_path, 'w') as configfile:
-                self.config.write(configfile)
-        self.config.read(settings_path)
-    def getOption(self, section, option):
-        return self.config.get(section, option)
+from globals import *
 
 
 

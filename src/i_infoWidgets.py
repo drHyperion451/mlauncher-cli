@@ -12,7 +12,7 @@ class PwadTitle(Widget):
         height: auto; 
     }
     """
-    str_body = reactive(SELECTED_FILE)
+    str_body = reactive(SELECTED_MAP)
     def render(self) -> str:
 
         return f"{self.str_body}"
@@ -25,6 +25,6 @@ class PwadAuthor(Widget):
         height: auto; 
     }
     """
-    str_body = reactive(MapsJson(JSON_FILEPATH).get_from_data('WAD', SELECTED_FILE, 'Author')[0])
+    str_body = reactive(MapsJson(JSON_FILEPATH).get_from_data('WAD', SELECTED_MAP, 'Author')[0])
     def render(self) -> str:
         return f"{self.str_body}"
