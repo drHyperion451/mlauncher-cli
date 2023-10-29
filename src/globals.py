@@ -4,7 +4,6 @@ import os
 from configparser import ConfigParser
 
 # GLOBAL PARAMS
-# Some of them are placeholders. TODO: Make configs and change the params
 home = Path.home()
 
 JSON_FILEPATH = 'src/ml_info.json'
@@ -29,7 +28,7 @@ def SETTINGS_CREATE(settings_path):
         config.write(configfile)
 
 
-SETTINGS_V = 1 # Whenever I change the config this should add to avoid problems
+SETTINGS_V:int = 1 # Whenever I change the config this should add to avoid problems
 SETTINGS_PATH = 'config.ini'
 """ Edit SETTINGS_CREATE inside ui_settings.py for adding more sections
     Each SETTINGS_* variable is one section"""
@@ -43,6 +42,7 @@ SETTINGS_GAME:dict = {
 }
 
 SETTINGS_LAUNCHER:dict = {
+    'SETTINGS_V': SETTINGS_V,
     'QUICK_EXIT': 'False',
     'WADS_ORDER': 'PSN'
 }
@@ -50,8 +50,29 @@ SETTINGS_LAUNCHER:dict = {
 
 config = ConfigParser()
 if not os.path.exists(SETTINGS_PATH):
-        SETTINGS_CREATE(SETTINGS_PATH)
+    SETTINGS_CREATE(SETTINGS_PATH)
 config.read(SETTINGS_PATH)
+# If settings version are not the same, display an error message
+SETTINGS_V_FILE:int = int(config.get('LAUNCHER', 'SETTINGS_V'))
+if SETTINGS_V != SETTINGS_V_FILE: 
+    # TODO: Fix this crap.
+    print(
+f"""ERROR: The version of the config file ({SETTINGS_V_FILE}) is not
+the same as the current supported version ({SETTINGS_V}).
+
+That means the app has created additional configs that won't work on the new
+update, so you need to manually add them
+
+Please backup the config.ini file, delete it and change the new info.
+This shitty workaround is planned to be reworked for avoiding user 
+headaches. Sorry! :(
+
+If you think you know what you are doing you can replace the settings_v to match
+the current one {SETTINGS_V}."""
+)
+    input('Press any button to exit')
+    exit()
+
 SOURCEPORT = config.get('GAME', 'SOURCEPORT')
 IWAD = config.get('GAME', 'IWAD')
 ML_PATH = config.get('GAME', 'ML_PATH')
