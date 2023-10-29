@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Integrated: main.py",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
-            "console": "externalTerminal",
+            "program": "./src/main.py",
+            "console": "integratedTerminal",
             "justMyCode": true,
             "autoReload": {
                 "enable": false
             }
         },
         {
-            "name": "Python: main.py",
+            "name": "External: main.py",
             "type": "python",
             "request": "launch",
             "program": "./src/main.py",
