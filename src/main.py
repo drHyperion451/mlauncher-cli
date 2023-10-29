@@ -18,9 +18,6 @@ from globals import *
 
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
 
-# DotEnvs. Should be removed
-from dotenv import load_dotenv
-
 class MenuHeader(Static):
     """ Top bar menu static Widget """
 
@@ -174,7 +171,6 @@ def QuitMsg() -> str:
 
 
 if __name__ == '__main__':
-    load_dotenv()
     # Renames terminal tab if avaliable:
     sys.stdout.write("\x1b]2;%s\x07" % 'MLauncher')
 
