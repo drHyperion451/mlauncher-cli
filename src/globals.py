@@ -1,18 +1,21 @@
 from pathlib import Path
 import sys
 import os
+from pathlib import Path
 from configparser import ConfigParser
 
 # GLOBAL PARAMS
 home = Path.home()
 
 JSON_FILEPATH = 'src/ml_info.json'
+SETTINGS_PATH = 'config.ini'
 try: 
     """
     This is needed if you want to freeze the script. If not, it won't load
     correctly. 
     """
     JSON_FILEPATH = f"{sys._MEIPASS}/src/ml_info.json"
+    SETTINGS_PATH = f"{Path(sys._MEIPASS).parent}/config.ini"
 except (NameError, AttributeError) as error:
     print(f"{error}. Expected to be running as script, not frozen.")
 
@@ -29,7 +32,7 @@ def SETTINGS_CREATE(settings_path):
 
 
 SETTINGS_V:int = 1 # Whenever I change the config this should add to avoid problems
-SETTINGS_PATH = 'config.ini'
+
 """ Edit SETTINGS_CREATE inside ui_settings.py for adding more sections
     Each SETTINGS_* variable is one section"""
 
