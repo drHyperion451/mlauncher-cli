@@ -14,7 +14,7 @@ import jsonUtils
 import launch
 from infoWidgets import *
 from ui_quit import QuitScreen
-
+from ui_settings import SettingsScreen, Settings
 from globals import *
 
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
@@ -26,7 +26,7 @@ class MenuHeader(Static):
         yield Horizontal(
             Button("Game", "primary", id="buttonGame", classes='menuButtons', disabled=True),
             Button("Wads", "primary", id="wadsButton", classes='menuButtons', disabled=True),
-            Button("Options", "primary", id="optionsButton", classes='menuButtons', disabled=True),
+            Button("Options", "primary", id="optionsButton", classes='menuButtons', disabled=False),
             Button("Quit", "error", id="menuQuitButton", classes='menuButtons')
         )
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -36,24 +36,10 @@ class MenuHeader(Static):
             case "wadsButton":
                 pass
             case "optionsButton":
-                self.app.push_screen(OptionsScreen(classes='DialogScreen'))
+                self.app.push_screen(SettingsScreen(classes='DialogScreen'))
             case "menuQuitButton":
                 self.app.push_screen(QuitScreen(classes='DialogScreen'))
 
-class OptionsScreen(Screen):
-    classes = 'dialogScreen'
-    def compose(self) -> ComposeResult:
-        yield Grid(
-            Label("Options", id='optionsTitle', classes='popupDialogTitle'),
-            Button("Cancel", 'default', id="optionsCancel", classes='popupButton'),
-            id="optionsDialog",
-            classes='dialogGrid'
-        )
-    def on_button_pressed(self, event: Button.Pressed) -> None:
-        match event.button.id:
-            case 'optionsCancel':
-                self.app.pop_screen()
-        
     
 class pwadMain(Static):
     CSS_PATH = 'css/pwadMain.tcss'
@@ -102,8 +88,8 @@ class MLauncherApp(App):
     """Main Textual App for MLauncher."""
     CSS_PATH = './css/mlauncher.tcss'
     BINDINGS = [("q", "request_quit", "Quit"), 
-                ("d", "toggle_dark", "Dark mode")]
-
+                ("d", "toggle_dark", "Dark mode"),
+                ("s", "request_settings", "settings")]
     def compose(self) -> ComposeResult:
         """Create child widgets for the app."""
         yield Header(show_clock=True, name="Master Launcher", id='header')
@@ -120,27 +106,21 @@ class MLauncherApp(App):
         if QUICK_EXIT: self.app.exit()
         self.push_screen(QuitScreen(classes='DialogScreen'))
 
+    def action_request_settings(self) -> None:
+        """ Action that opens SettingsScreen"""
+        self.push_screen(SettingsScreen(classes='DialogScreen'))
 
 if __name__ == '__main__':
     # Renames terminal tab if avaliable:
     sys.stdout.write("\x1b]2;%s\x07" % 'MLauncher')
+    
+    maps = jsonUtils.MapsJson(JSON_FILEPATH)
 
     # Loads config file or creates it with default info:
-    config = configparser.ConfigParser()
-    if not os.path.exists('config.ini'):
-        config['GAME'] = {'SOURCEPORT': './dsda-doom/dsda-doom.exe',
-                        'IWAD': './doom2/DOOM2.WAD',
-                        'ML_PATH': './master/wads'}
-        
-        with open('config.ini', 'w') as configfile:
-            config.write(configfile)
-
-    config.read('config.ini')
-
-    maps = jsonUtils.MapsJson(JSON_FILEPATH)
-    SOURCEPORT = config.get('GAME', 'SOURCEPORT')
-    IWAD = config.get('GAME', 'IWAD')
-    ML_PATH = config.get('GAME', 'ML_PATH')
+    config = Settings('config.ini')
+    SOURCEPORT = config.getOption('GAME', 'SOURCEPORT')
+    IWAD = config.getOption('GAME', 'IWAD')
+    ML_PATH = config.getOption('GAME', 'ML_PATH')
 
     MLauncherApp().run()
 
