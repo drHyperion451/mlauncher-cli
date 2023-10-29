@@ -22,7 +22,8 @@ except (NameError, AttributeError) as error:
 def SETTINGS_CREATE(settings_path):
     config = ConfigParser()
     """Manually add sections below"""
-    config['GAME'] = SETTINGS_GAME # Set in the globals.py file
+    config['GAME'] = SETTINGS_GAME 
+    config['LAUNCHER'] = SETTINGS_LAUNCHER
 
     with open(settings_path, 'w') as configfile:
         config.write(configfile)
@@ -33,11 +34,18 @@ SETTINGS_PATH = 'config.ini'
 """ Edit SETTINGS_CREATE inside ui_settings.py for adding more sections
     Each SETTINGS_* variable is one section"""
 
-SETTINGS_GAME:dict = {'SOURCEPORT': './dsda-doom/dsda-doom.exe',
-                'IWAD': './doom2/DOOM2.WAD',
-                'ML_PATH': './master/wads',
-                'SELECTED_MAP': 'ATTACK.WAD',
-                'FILES': ''}
+SETTINGS_GAME:dict = {
+    'SOURCEPORT': './dsda-doom/dsda-doom.exe',
+    'IWAD': './doom2/DOOM2.WAD',
+    'ML_PATH': './master/wads',
+    'SELECTED_MAP': 'ATTACK.WAD',
+    'FILES': ''
+}
+
+SETTINGS_LAUNCHER:dict = {
+    'QUICK_EXIT': 'False',
+    'WADS_ORDER': 'PSN'
+}
 
 
 config = ConfigParser()
@@ -51,4 +59,5 @@ FILES = config.get('GAME', 'FILES')
 SELECTED_MAP = config.get('GAME', 'SELECTED_MAP')
         
 # GLOBAL BOOLS
-QUICK_EXIT = False
+QUICK_EXIT = config.get('LAUNCHER', 'QUICK_EXIT')
+WADS_ORDER = config.get('LAUNCHER', 'WADS_ORDER')

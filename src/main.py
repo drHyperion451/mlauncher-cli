@@ -8,7 +8,7 @@ from textual.widgets import Header, Footer, Static, Placeholder, Label, Button, 
 
 import os
 from configparser import ConfigParser
-
+import webbrowser
 # MODULES:
 import i_jsonUtils
 import g_launch
@@ -36,7 +36,8 @@ class MenuHeader(Static):
             case "wadsButton":
                 pass
             case "optionsButton":
-                self.app.push_screen(SettingsScreen(classes='DialogScreen'))
+                webbrowser.open(SETTINGS_PATH)
+                #self.app.push_screen(SettingsScreen(classes='DialogScreen'))
             case "menuQuitButton":
                 self.app.push_screen(QuitScreen(classes='DialogScreen'))
 
@@ -60,7 +61,7 @@ class pwadMain(Static):
 class pwadList(VerticalScroll):
 
     def compose(self) -> ComposeResult:
-        wads = maps.get_all_wads_ordered('PSN', displayExtension=False)
+        wads = maps.get_all_wads_ordered(WADS_ORDER, displayExtension=False)
 
         for eachWad in wads:
             yield Button(eachWad, id=eachWad, classes="map-buttons")
