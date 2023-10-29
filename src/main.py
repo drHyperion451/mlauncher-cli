@@ -8,11 +8,12 @@ from textual.widgets import Header, Footer, Static, Placeholder, Label, Button, 
 
 import os
 from configparser import ConfigParser
-import webbrowser
+
 # MODULES:
 import i_jsonUtils
-import g_launch
+from i_system import *
 from i_infoWidgets import *
+import g_launch
 from ui_quit import QuitScreen
 from ui_settings import SettingsScreen
 from globals import *
@@ -36,7 +37,7 @@ class MenuHeader(Static):
             case "wadsButton":
                 pass
             case "optionsButton":
-                webbrowser.open(SETTINGS_PATH)
+                openFile(SETTINGS_PATH)
                 #self.app.push_screen(SettingsScreen(classes='DialogScreen'))
             case "menuQuitButton":
                 self.app.push_screen(QuitScreen(classes='DialogScreen'))
@@ -119,7 +120,12 @@ class MLauncherApp(App):
 if __name__ == '__main__':
     # Renames terminal tab if avaliable:
     sys.stdout.write("\x1b]2;%s\x07" % 'MLauncher')
-    
+
+    # CWD to executable 
+    CWD = os.path.dirname('/Users/drhyperion/Documents/PROYECTOS/mlauncher-cli/dist/MLauncher/MLauncher')
+    if getattr(sys, 'frozen', False):
+        print('PEEEENIS: ', sys.executable)
+        os.chdir(os.path.dirname(sys.executable))
     maps = i_jsonUtils.MapsJson(JSON_FILEPATH)
 
     # Loads config file or creates it with default info:
