@@ -1,9 +1,6 @@
 from textual.app import App, ComposeResult
-from textual.containers import Grid, Horizontal, VerticalScroll
-from textual.reactive import reactive
-from textual.widget import Widget
-from textual.screen import Screen
-from textual.widgets import Header, Footer, Static, Placeholder, Label, Button, Pretty
+from textual.containers import Horizontal, VerticalScroll
+from textual.widgets import Header, Footer, Static, Button
 
 
 import os

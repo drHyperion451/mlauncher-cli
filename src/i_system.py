@@ -1,6 +1,5 @@
 import platform
 import os
-import sys
 import webbrowser
 OS = platform.system()
 
