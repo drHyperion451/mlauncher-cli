@@ -6,7 +6,7 @@ from textual.widgets import Label, Button
 from time import time
 
 class QuitScreen(Screen):
-
+    BINDINGS = [("escape", "app.pop_screen", "Pop screen")]
     def compose(self) -> ComposeResult:
         yield Grid(
             Label(QuitMsg(), id="question", classes='popupDialogText'),
