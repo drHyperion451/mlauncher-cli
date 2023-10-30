@@ -1,9 +1,7 @@
 from textual.app import ComposeResult
-from textual.containers import Grid, HorizontalScroll, Horizontal, Vertical
+from textual.containers import Grid
 from textual.screen import Screen
-from textual.validation import Number, Function
-from textual.widgets import Label, Button, Placeholder, Static, OptionList, \
-Checkbox, Input
+from textual.widgets import Label, Button
 
 from globals import *
 

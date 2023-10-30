@@ -7,7 +7,6 @@ import os
 from configparser import ConfigParser
 
 # MODULES:
-import i_jsonUtils
 from i_system import *
 from i_infoWidgets import *
 import g_launch
