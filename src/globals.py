@@ -3,12 +3,12 @@ import sys
 import os
 from pathlib import Path
 from configparser import ConfigParser
-
+from i_jsonUtils import MapsJson
 # GLOBAL PARAMS
 home = Path.home()
-
 JSON_FILEPATH = 'src/ml_info.json'
 SETTINGS_PATH = 'config.ini'
+maps = MapsJson(JSON_FILEPATH)
 try: 
     """
     This is needed if you want to freeze the script. If not, it won't load
@@ -81,7 +81,7 @@ IWAD = config.get('GAME', 'IWAD')
 ML_PATH = config.get('GAME', 'ML_PATH')
 FILES = config.get('GAME', 'FILES')
 SELECTED_MAP = config.get('GAME', 'SELECTED_MAP')
-        
+WARP_PC = maps.get_from_data('WAD', SELECTED_MAP, 'PC')[0]
 # GLOBAL BOOLS
 QUICK_EXIT = config.get('LAUNCHER', 'QUICK_EXIT')
 WADS_ORDER = config.get('LAUNCHER', 'WADS_ORDER')

@@ -55,7 +55,9 @@ class pwadMain(Static):
             # Change the title
             self.query_one("#title").str_body = SELECTED_MAP
             self.query_one('#author').str_body = maps.get_from_data('WAD', SELECTED_MAP, 'Author')[0]
-
+            # Change WARP_PC:
+            WARP_PC = maps.get_from_data('WAD', SELECTED_MAP, 'PC')[0]
+            
 class pwadList(VerticalScroll):
 
     def compose(self) -> ComposeResult:
@@ -124,9 +126,8 @@ if __name__ == '__main__':
     # CWD to executable 
     CWD = os.path.dirname('/Users/sbritorodr/Documents/PROYECTOS/mlauncher-cli/dist/MLauncher/MLauncher')
     if getattr(sys, 'frozen', False):
-        print('PEEEENIS: ', sys.executable)
         os.chdir(os.path.dirname(sys.executable))
-    maps = i_jsonUtils.MapsJson(JSON_FILEPATH)
+    
 
     # Loads config file or creates it with default info:
     
