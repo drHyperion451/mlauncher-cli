@@ -12,7 +12,8 @@ from i_system import *
 from i_infoWidgets import *
 import g_launch
 from ui_quit import QuitScreen
-from ui_settings import SettingsScreen, pwadLaunchOptions
+from ui_settings import SettingsScreen
+from ui_pwad_launch_options import pwadLaunchOptions
 from globals import *
 
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
