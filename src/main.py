@@ -1,6 +1,6 @@
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal, VerticalScroll
-from textual.widgets import Header, Footer, Static, Button
+from textual.widgets import Header, Footer, Static, Button, Placeholder
 
 
 import os
@@ -72,9 +72,14 @@ class pwadInfo(Static):
         yield PwadTitle(id='title')
         yield PwadAuthor(id='author')
 
+class pwadLaunchOptions(Static):
+    def compose(self) -> ComposeResult:
+        yield Placeholder()
+
 class pwadContents(Static):
     def compose(self) -> ComposeResult:
         yield pwadInfo()
+        yield pwadLaunchOptions(id='pwadLaunchOptions')
         yield Button("LAUNCH", variant='success', id='launchButton')
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
