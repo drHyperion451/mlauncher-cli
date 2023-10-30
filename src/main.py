@@ -12,7 +12,7 @@ from i_system import *
 from i_infoWidgets import *
 import g_launch
 from ui_quit import QuitScreen
-from ui_settings import SettingsScreen
+from ui_settings import SettingsScreen, pwadLaunchOptions
 from globals import *
 
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
@@ -72,9 +72,7 @@ class pwadInfo(Static):
         yield PwadTitle(id='title')
         yield PwadAuthor(id='author')
 
-class pwadLaunchOptions(Static):
-    def compose(self) -> ComposeResult:
-        yield Placeholder()
+
 
 class pwadContents(Static):
     def compose(self) -> ComposeResult:
@@ -97,7 +95,7 @@ class MLauncherApp(App):
     CSS_PATH = './css/mlauncher.tcss'
     BINDINGS = [("q", "request_quit", "Quit"), 
                 ("d", "toggle_dark", "Dark mode"),
-                ("s", "request_settings", "settings")]
+                ("s", "request_settings", "Settings")]
     def compose(self) -> ComposeResult:
         """Create child widgets for the app."""
         yield Header(show_clock=True, name="Master Launcher", id='header')

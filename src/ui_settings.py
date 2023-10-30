@@ -1,7 +1,7 @@
 from textual.app import ComposeResult
 from textual.containers import Grid
 from textual.screen import Screen
-from textual.widgets import Label, Button
+from textual.widgets import Label, Button, Placeholder, Static
 
 from globals import *
 
@@ -24,3 +24,9 @@ class SettingsScreen(Screen):
             case 'optionsCancel':
                 self.app.pop_screen()
 
+class pwadLaunchOptions(Static):
+    def compose(self) -> ComposeResult:
+        yield Grid(
+            Label("Difficulty", id='difficultyLabel', classes='launchOptionsLabel'),
+            id="pwadLaunchOptionsGrid"
+        )

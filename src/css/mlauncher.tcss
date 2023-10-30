@@ -21,11 +21,15 @@ MenuHeader {
 }
 #pwadContents {
     align: center bottom;
-    width: 75%;
+    width: 82%;
     height:100%;
 }
 #pwadLaunchOptions {
-    height: 75%;
+    height: 90%;
+    
+}
+#pwadLaunchOptionsGrid {
+    border: heavy hsla(0, 100%, 100%, 1);
 }
 #pwadInfo {
     width: 20%;
