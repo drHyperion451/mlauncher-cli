@@ -16,12 +16,12 @@ MenuHeader {
 
 /* MAIN CONTENTS */
 #pwadList {
-    width: 18%;
+    width: 19;
     overflow-y: scroll;
 }
 #pwadContents {
     align: center bottom;
-    width: 82%;
+    width: 2fr;
     height:100%;
 }
 #pwadLaunchOptions {
@@ -29,7 +29,45 @@ MenuHeader {
     
 }
 #pwadLaunchOptionsGrid {
-    border: heavy hsla(0, 100%, 100%, 1);
+    border-top: dashed white;
+    grid-size: 2 1; /* columns rows*/
+    /*grid-columns:1fr 2fr;  Column size, left to right repeated*/ 
+    grid-gutter:2;
+    margin: 0 4; /* top right bottom left. Clockwise*/
+}
+#skillLevelGrid {
+    layout: vertical;
+    align: center middle;
+    overflow-y:auto;
+    height:100%;
+    grid-size: 1 2;
+}
+
+#miscGrid {
+    align-horizontal: right;
+    padding: 0;
+}
+#flags-option-grid {
+    align-horizontal: right;
+}
+.misc-option-element {
+    width: 19
+}
+
+
+#nightmare-opts-grid{
+    grid-columns: 2;
+    align: right middle;
+
+}
+#weird-opts-grid{
+    align: left middle;
+}
+
+#skill-level-button{
+    text-align:left;
+    width: 100%;
+
 }
 #pwadInfo {
     width: 20%;
