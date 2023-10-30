@@ -2,7 +2,6 @@ from textual.app import App, ComposeResult
 from textual.containers import Horizontal, VerticalScroll
 from textual.widgets import Header, Footer, Static, Button, Placeholder
 
-
 import os
 from configparser import ConfigParser
 

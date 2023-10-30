@@ -85,3 +85,14 @@ WARP_PC = maps.get_from_data('WAD', SELECTED_MAP, 'PC')[0]
 # GLOBAL BOOLS
 QUICK_EXIT = config.get('LAUNCHER', 'QUICK_EXIT')
 WADS_ORDER = config.get('LAUNCHER', 'WADS_ORDER')
+
+# Flags
+#SKILL_LEVEL_ENABLED = AUTO_WARP = FAST_MONST = RESPAWN_MONST = NO_CHEATS = NO_MONST = False
+LAUNCH_FLAGS = {
+    'skill-level-checkbox' : False,
+    'fast-monst' : False,
+    'respawn-monst' : False,
+    'auto-warp-checkbox' : False,
+    'no-cheats' : False,
+    'no-monst' : False,
+}

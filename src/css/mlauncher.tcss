@@ -64,7 +64,7 @@ MenuHeader {
     align: left middle;
 }
 
-#skill-level-button{
+#skill-level-checkbox{
     text-align:left;
     width: 100%;
 
