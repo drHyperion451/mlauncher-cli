@@ -20,9 +20,12 @@ MenuHeader {
     overflow-y: scroll;
 }
 #pwadContents {
-    align: center middle;
+    align: center bottom;
     width: 75%;
     height:100%;
+}
+#pwadLaunchOptions {
+    height: 75%;
 }
 #pwadInfo {
     width: 20%;
