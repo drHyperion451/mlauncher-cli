@@ -1,32 +1,51 @@
 import subprocess
+from globals import *
 from shlex import split as shlex_split
 
+def doom_flags_handler() -> str:
+    flags = []
+    for key, value in LAUNCH_FLAGS_STATUS.items():
+        if value:  # if the value is True
+            flag = LAUNCH_FLAGS.get(key)
+            if flag is not None:  # if the flag is not None
+                flags.append(flag)
+    return ' '.join(flags)
 
-def game (sourcePort:str, iwad:str, extraPwads='', extra_args='') -> str:
+def skill_level_handler() -> str:
+    string = ''
+    if LAUNCH_FLAGS_STATUS['skill-level-checkbox']:
+        if SKILL != '':
+            string = f"{LAUNCH_FLAGS['skill-level']} {SKILL}"
+    return string
+
+def warp_handler() -> str:
+    string = ''
+    global WARP
+    if WARP == '':
+        if LAUNCH_FLAGS_STATUS['auto-warp-checkbox']:
+            string = f"{LAUNCH_FLAGS['warp-level']} {WARP_PC}"
+    else: 
+        string = f"{LAUNCH_FLAGS['warp-level']} {WARP}"
+    return string
+    
+
+def game (sourcePort:str, iwad:str, extraPwads:str | None = None) -> str:
 
     cmdString = f"{sourcePort} -iwad {iwad}"
-    if extra_args != '':
-        # Adds arguments plus a space just if the user provides one.
-        cmdString = f"{cmdString} {extra_args}"
-    
-    if extraPwads != '':
-        cmdString = f"{cmdString} -file {extraPwads}"
+    if extraPwads != None:
+        cmdString += f" -file {extraPwads}"
 
-    debug = shlex_split(cmdString)
+    cmdString += f' {doom_flags_handler()} {skill_level_handler()} {warp_handler()}'
+    # Splits into arguments. Just because subprocess.run needs this.
     cmdList = shlex_split(cmdString)
 
-    for listElement in cmdList: # Makes each element between ("") so spaces
-                                # doesn't matter
 
-        listelement = f"\"{listElement}\""
-
-    # print("Command: ", cmdList)
-    try:
-        stdout = subprocess.run(cmdList, capture_output=True, text=True).stdout
-    except (FileNotFoundError, UnboundLocalError):
-        # UnboundLocalError mostly is related to FileNotFoundError, so can be passed
-        # print("FileNotFoundError: [Errno 2] No such file or directory at line 44"
-        pass
-
-    #return stdout                     #This gives me errors only in pyinstaller
+    completed_process = subprocess.run(cmdList, capture_output=True, text=True)
+    
+    # This will handle properly if errors had happened or not.
+    O_STDERR = completed_process.stderr
+    O_STDOUT = completed_process.stdout
+    O_STDOUT, O_STDERR, cmdList
+    
+    
 
