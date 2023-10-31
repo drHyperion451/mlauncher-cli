@@ -92,45 +92,42 @@ the current one {SETTINGS_V}."""
 )
     input('Press any button to exit')
     exit()
-
+class GlobalVars:
 # For persistence when saving the game
-SOURCEPORT = config.get('GAME', 'SOURCEPORT')
-IWAD = config.get('GAME', 'IWAD')
-ML_PATH = config.get('GAME', 'ML_PATH')
-FILES = config.get('GAME', 'FILES')
-SELECTED_MAP = config.get('GAME', 'SELECTED_MAP')
-
-SKILL = config.get('GAME', 'SKILL')
-# WARP = config.get('GAME', 'WARP')
-
-WARP = str('')
+    SOURCEPORT = config.get('GAME', 'SOURCEPORT')
+    IWAD = config.get('GAME', 'IWAD')
+    ML_PATH = config.get('GAME', 'ML_PATH')
+    FILES = config.get('GAME', 'FILES')
+    SELECTED_MAP = config.get('GAME', 'SELECTED_MAP')
+    SKILL = config.get('GAME', 'SKILL')
+    WARP = str('')
 # WARP_PC is the PC slot from the SELECTED_MAP for auto-warping
-WARP_PC = maps.get_from_data('WAD', SELECTED_MAP, 'PC')[0] 
+    WARP_PC = maps.get_from_data('WAD', SELECTED_MAP, 'PC')[0] 
 # GLOBAL BOOLS
-QUICK_EXIT = config.get('LAUNCHER', 'QUICK_EXIT')
-WADS_ORDER = config.get('LAUNCHER', 'WADS_ORDER')
+    QUICK_EXIT = config.get('LAUNCHER', 'QUICK_EXIT')
+    WADS_ORDER = config.get('LAUNCHER', 'WADS_ORDER')
 
 # Flags
-LAUNCH_FLAGS_STATUS = {
-    'skill-level-checkbox' : False,
-    'skill-level': False,
-    'fast-monst' : False,
-    'respawn-monst' : False,
-    'warp-level': False,
-    'auto-warp-checkbox' : False,
-    'no-cheats' : False,
-    'no-monst' : False,
-}
-LAUNCH_FLAGS = {
-    'skill-level-checkbox' : None,
-    'skill-level': '-skill',
-    'fast-monst' : '-fast',
-    'respawn-monst' : '-respawn',
-    'warp-level': '-warp',
-    'auto-warp-checkbox' : None,
-    'no-cheats' : '-nocheats',
-    'no-monst' : '-nomonsters',
-}
+    LAUNCH_FLAGS_STATUS = {
+        'skill-level-checkbox' : False,
+        'skill-level': False,
+        'fast-monst' : False,
+        'respawn-monst' : False,
+        'warp-level': False,
+        'auto-warp-checkbox' : False,
+        'no-cheats' : False,
+        'no-monst' : False,
+    }
+    LAUNCH_FLAGS = {
+        'skill-level-checkbox' : None,
+        'skill-level': '-skill',
+        'fast-monst' : '-fast',
+        'respawn-monst' : '-respawn',
+        'warp-level': '-warp',
+        'auto-warp-checkbox' : None,
+        'no-cheats' : '-nocheats',
+        'no-monst' : '-nomonsters',
+    }
 SKILL_OPTIONS = ("I'm too young to die", "Hey, not too rough", 
                  "Hurt me plenty", "Ultra-Violence", "Nightmare!")
 # STDOUT, STDERR

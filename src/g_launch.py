@@ -1,32 +1,31 @@
 import subprocess
-from globals import WARP, SKILL, WARP_PC, LAUNCH_FLAGS, LAUNCH_FLAGS_STATUS
+from globals import GlobalVars
 
 from shlex import split as shlex_split
 
 def doom_flags_handler() -> str:
     flags = []
-    for key, value in LAUNCH_FLAGS_STATUS.items():
+    for key, value in GlobalVars.LAUNCH_FLAGS_STATUS.items():
         if value:  # if the value is True
-            flag = LAUNCH_FLAGS.get(key)
+            flag = GlobalVars.LAUNCH_FLAGS.get(key)
             if flag is not None:  # if the flag is not None
                 flags.append(flag)
     return ' '.join(flags)
 
 def skill_level_handler() -> str:
     string = ''
-    if LAUNCH_FLAGS_STATUS['skill-level-checkbox']:
-        if SKILL != '':
-            string = f"{LAUNCH_FLAGS['skill-level']} {SKILL}"
+    if GlobalVars.LAUNCH_FLAGS_STATUS['skill-level-checkbox']:
+        if GlobalVars.SKILL != '':
+            string = f"{GlobalVars.LAUNCH_FLAGS['skill-level']} {GlobalVars.SKILL}"
     return string
 
 def warp_handler() -> str:
-    global WARP
     string = ''
-    if WARP == '':
-        if LAUNCH_FLAGS_STATUS['auto-warp-checkbox']:
-            string = f"{LAUNCH_FLAGS['warp-level']} {WARP_PC}"
+    if GlobalVars.WARP == '':
+        if GlobalVars.LAUNCH_FLAGS_STATUS['auto-warp-checkbox']:
+            string = f"{GlobalVars.LAUNCH_FLAGS['warp-level']} {GlobalVars.WARP_PC}"
     else: 
-        string = f"{LAUNCH_FLAGS['warp-level']} {WARP}"
+        string = f"{GlobalVars.LAUNCH_FLAGS['warp-level']} {GlobalVars.WARP}"
     return string
     
 
