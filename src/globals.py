@@ -1,6 +1,5 @@
 from pathlib import Path
 import sys
-import os
 from pathlib import Path
 from configparser import ConfigParser
 from i_jsonUtils import MapsJson
@@ -100,9 +99,11 @@ IWAD = config.get('GAME', 'IWAD')
 ML_PATH = config.get('GAME', 'ML_PATH')
 FILES = config.get('GAME', 'FILES')
 SELECTED_MAP = config.get('GAME', 'SELECTED_MAP')
-SKILL:any = config.get('GAME', 'SKILL')
+
+SKILL = config.get('GAME', 'SKILL')
 # WARP = config.get('GAME', 'WARP')
 
+WARP = str('')
 # WARP_PC is the PC slot from the SELECTED_MAP for auto-warping
 WARP_PC = maps.get_from_data('WAD', SELECTED_MAP, 'PC')[0] 
 # GLOBAL BOOLS

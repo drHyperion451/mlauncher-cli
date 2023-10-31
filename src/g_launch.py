@@ -1,5 +1,6 @@
 import subprocess
-from globals import *
+from globals import WARP, SKILL, WARP_PC, LAUNCH_FLAGS, LAUNCH_FLAGS_STATUS
+
 from shlex import split as shlex_split
 
 def doom_flags_handler() -> str:
@@ -19,8 +20,8 @@ def skill_level_handler() -> str:
     return string
 
 def warp_handler() -> str:
-    string = ''
     global WARP
+    string = ''
     if WARP == '':
         if LAUNCH_FLAGS_STATUS['auto-warp-checkbox']:
             string = f"{LAUNCH_FLAGS['warp-level']} {WARP_PC}"

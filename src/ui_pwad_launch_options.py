@@ -3,7 +3,7 @@ from textual.containers import Grid, Horizontal, Vertical
 from textual.widgets import Static, OptionList, Checkbox, Input
 
 
-from globals import *
+from globals import LAUNCH_FLAGS_STATUS, SKILL_OPTIONS, SKILL, WARP
 
 class pwadLaunchOptions(Static):
     """Main Launch Options generator UI"""
@@ -61,17 +61,14 @@ class pwadLaunchOptions(Static):
             # THIS DOESN'T WORK?? Maybe it's a Textual Bug?? TODO: Open a ticket
             self.query_one('#warp-input').disabled == event.checkbox.value
     
-    def on_option_list_option_highlighted(self, event: OptionList.OptionHighlighted):
+    def on_option_list_option_highlighted(self, event: OptionList.OptionHighlighted) -> None:
         # Works when skill level is enabled
         if self.query_one('#skill-level-checkbox').value == True:
-            global SKILL
             SKILL = SKILL_OPTIONS.index(event.option.prompt) + 1
     
-    def on_input_changed(self, event: Input.Submitted):
+    def on_input_changed(self, event: Input.Submitted) -> None:
         if self.query_one('#auto-warp-checkbox').value == False:
-            global WARP
-            WARP = int(event.value)
-            WARP
+            WARP = event.value
 
 
 
