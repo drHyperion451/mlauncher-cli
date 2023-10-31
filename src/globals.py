@@ -23,10 +23,27 @@ except (NameError, AttributeError) as error:
 
 def SETTINGS_CREATE(settings_path):
     config = ConfigParser()
-    """Manually add sections below"""
-    config['GAME'] = SETTINGS_GAME 
-    config['LAUNCHER'] = SETTINGS_LAUNCHER
+    config.read(settings_path)
 
+    # Define the sections and their corresponding dictionaries
+    sections = {
+        'GAME': SETTINGS_GAME,
+        'LAUNCHER': SETTINGS_LAUNCHER
+    }
+
+    # Iterate through the sections and their dictionaries
+    for section, settings_dict in sections.items():
+        # If the section is missing, add it
+        if not config.has_section(section):
+            config.add_section(section)
+
+        # Iterate through the keys and values in the dictionary
+        for key, value in settings_dict.items():
+            # If the key is missing, add it
+            if not config.has_option(section, key):
+                config.set(section, key, str(value))
+
+    # Write the updated configuration to the file
     with open(settings_path, 'w') as configfile:
         config.write(configfile)
 
@@ -41,7 +58,8 @@ SETTINGS_GAME:dict = {
     'IWAD': './doom2/DOOM2.WAD',
     'ML_PATH': './master/wads',
     'SELECTED_MAP': 'ATTACK.WAD',
-    'FILES': ''
+    'FILES': '',
+    'SKILL': 4,
 }
 
 SETTINGS_LAUNCHER:dict = {
@@ -52,9 +70,9 @@ SETTINGS_LAUNCHER:dict = {
 
 
 config = ConfigParser()
-if not os.path.exists(SETTINGS_PATH):
-    SETTINGS_CREATE(SETTINGS_PATH)
-config.read(SETTINGS_PATH)
+#if not os.path.exists(SETTINGS_PATH):
+SETTINGS_CREATE(SETTINGS_PATH)
+config.read(SETTINGS_PATH)  
 # If settings version are not the same, display an error message
 SETTINGS_V_FILE:int = int(config.get('LAUNCHER', 'SETTINGS_V'))
 if SETTINGS_V != SETTINGS_V_FILE: 
@@ -76,23 +94,44 @@ the current one {SETTINGS_V}."""
     input('Press any button to exit')
     exit()
 
+# For persistence when saving the game
 SOURCEPORT = config.get('GAME', 'SOURCEPORT')
 IWAD = config.get('GAME', 'IWAD')
 ML_PATH = config.get('GAME', 'ML_PATH')
 FILES = config.get('GAME', 'FILES')
 SELECTED_MAP = config.get('GAME', 'SELECTED_MAP')
-WARP_PC = maps.get_from_data('WAD', SELECTED_MAP, 'PC')[0]
+SKILL:any = config.get('GAME', 'SKILL')
+# WARP = config.get('GAME', 'WARP')
+
+# WARP_PC is the PC slot from the SELECTED_MAP for auto-warping
+WARP_PC = maps.get_from_data('WAD', SELECTED_MAP, 'PC')[0] 
 # GLOBAL BOOLS
 QUICK_EXIT = config.get('LAUNCHER', 'QUICK_EXIT')
 WADS_ORDER = config.get('LAUNCHER', 'WADS_ORDER')
 
 # Flags
-#SKILL_LEVEL_ENABLED = AUTO_WARP = FAST_MONST = RESPAWN_MONST = NO_CHEATS = NO_MONST = False
-LAUNCH_FLAGS = {
+LAUNCH_FLAGS_STATUS = {
     'skill-level-checkbox' : False,
+    'skill-level': False,
     'fast-monst' : False,
     'respawn-monst' : False,
+    'warp-level': False,
     'auto-warp-checkbox' : False,
     'no-cheats' : False,
     'no-monst' : False,
 }
+LAUNCH_FLAGS = {
+    'skill-level-checkbox' : None,
+    'skill-level': '-skill',
+    'fast-monst' : '-fast',
+    'respawn-monst' : '-respawn',
+    'warp-level': '-warp',
+    'auto-warp-checkbox' : None,
+    'no-cheats' : '-nocheats',
+    'no-monst' : '-nomonsters',
+}
+SKILL_OPTIONS = ("I'm too young to die", "Hey, not too rough", 
+                 "Hurt me plenty", "Ultra-Violence", "Nightmare!")
+# STDOUT, STDERR
+O_STDOUT = ''
+O_STDERR = ''

@@ -24,6 +24,7 @@ class MenuHeader(Static):
             Button("Game", "primary", id="buttonGame", classes='menuButtons', disabled=True),
             Button("Wads", "primary", id="wadsButton", classes='menuButtons', disabled=True),
             Button("Options", "primary", id="optionsButton", classes='menuButtons', disabled=False),
+            #Button("Console Output", "warning", id="consoleLogButton", classes='menuButtons', disabled=False),
             Button("Quit", "error", id="menuQuitButton", classes='menuButtons')
         )
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -49,7 +50,6 @@ class pwadMain(Static):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         # Refresh if the user selects map:
         if 'map-buttons' in event.button.classes:
-            global SELECTED_MAP
             SELECTED_MAP = event.button.id + '.WAD'
             # Change the title
             self.query_one("#title").str_body = SELECTED_MAP
@@ -87,6 +87,8 @@ class pwadContents(Static):
                 master_wad = f"{ML_PATH}/{SELECTED_MAP}"
                 g_launch.game(SOURCEPORT, IWAD, master_wad)
                 config.set('GAME', 'SELECTED_MAP', SELECTED_MAP)
+                config.set('GAME', 'SKILL', SKILL)
+                #config.set('GAME', 'WARP', WARP)
                 with open(SETTINGS_PATH, 'w') as configfile:
                     config.write(configfile)
 
@@ -123,7 +125,6 @@ if __name__ == '__main__':
     sys.stdout.write("\x1b]2;%s\x07" % 'MLauncher')
 
     # CWD to executable 
-    CWD = os.path.dirname('/Users/sbritorodr/Documents/PROYECTOS/mlauncher-cli/dist/MLauncher/MLauncher')
     if getattr(sys, 'frozen', False):
         os.chdir(os.path.dirname(sys.executable))
     
