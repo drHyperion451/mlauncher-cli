@@ -6,8 +6,9 @@
 [![MIT License][license-shield]][license-url]
 
 <div style="text-align:center">
-<b style="color:crimson;">This project is still on pre-apha. Please, be nice! :)</b>
+<b style="color:crimson;">This project is on beta. Please, be nice! :)</b>
 </div>
+<a href='https://ko-fi.com/drhyperion451' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi5.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ![Windows Screenshot](https://github.com/drHyperion451/mlauncher-cli/blob/master/assets/screenshot1.png?raw=true)
 
