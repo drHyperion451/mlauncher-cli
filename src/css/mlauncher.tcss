@@ -101,17 +101,40 @@ OptionsScreen {
 .DialogScreen {
     align: center middle;
 }
-
 .dialogGrid {
+    border: thick $background 80%;
+    background: $surface;
+
+}
+#game-dialog{
+    width: 90%;
+    height: 60%;
+    layout: vertical;
+}
+
+#game-dialog > Label {
+    text-align: center;
+    width: 100%;
+    margin: 1 0;
+}
+.dialog-options{
     grid-size: 2;
+    grid-columns: 1fr 5fr;
+
+}
+.dialog-options > Label {
+    width: 100%;
+    margin: 1 0;
+    text-align: right;
+}
+
+#closeDialog {
     grid-gutter: 1 2;
+    grid-size: 2;
     grid-rows: 1fr 3;
     padding: 0 1;
     width: 60;
     height: 11;
-    border: thick $background 80%;
-    background: $surface;
-
 }
 .popupDialogTitle{
     text-style: bold;

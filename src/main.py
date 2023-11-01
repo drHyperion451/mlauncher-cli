@@ -6,13 +6,19 @@ import os
 from configparser import ConfigParser
 
 # MODULES:
-from i_system import *
+from i_system import openFile, str_to_bool
 from i_infoWidgets import *
 import g_launch
-from ui_quit import QuitScreen
-from ui_settings import SettingsScreen
+
+
 from ui_pwad_launch_options import pwadLaunchOptions
-from globals import GlobalVars
+from globals import GlobalVars, SETTINGS_PATH
+
+# SCREENS:
+from s_game import GameScreen
+from s_wads import WadsScreen
+from s_settings import SettingsScreen
+from s_quit import QuitScreen
 
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
 
@@ -21,18 +27,18 @@ class MenuHeader(Static):
 
     def compose(self) -> ComposeResult:
         yield Horizontal(
-            Button("Game", "primary", id="buttonGame", classes='menuButtons', disabled=True),
-            Button("Wads", "primary", id="wadsButton", classes='menuButtons', disabled=True),
+            Button("Game", "primary", id="gameButton", classes='menuButtons', disabled=False),
+            Button("Wads", "primary", id="wadsButton", classes='menuButtons', disabled=False),
             Button("Options", "primary", id="optionsButton", classes='menuButtons', disabled=False),
             #Button("Console Output", "warning", id="consoleLogButton", classes='menuButtons', disabled=False),
             Button("Quit", "error", id="menuQuitButton", classes='menuButtons')
         )
     def on_button_pressed(self, event: Button.Pressed) -> None:
         match event.button.id:
-            case "buttonGame":
-                pass
+            case "gameButton":
+                self.app.push_screen(GameScreen(id='gameScreen', classes='DialogScreen'))
             case "wadsButton":
-                pass
+                self.app.push_screen(WadsScreen(id='wadsScreen', classes='DialogScreen'))
             case "optionsButton":
                 openFile(SETTINGS_PATH)
                 #self.app.push_screen(SettingsScreen(classes='DialogScreen'))
@@ -114,8 +120,9 @@ class MLauncherApp(App):
     
     def action_request_quit(self) -> None:
         """ Action that quits the app."""
-
-        if GlobalVars.QUICK_EXIT: self.app.exit()
+        
+        if str_to_bool(GlobalVars.QUICK_EXIT):
+            self.app.exit()
         self.push_screen(QuitScreen(classes='DialogScreen'))
 
     def action_request_settings(self) -> None:
