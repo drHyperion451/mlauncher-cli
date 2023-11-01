@@ -8,8 +8,12 @@ home = Path.home()
 JSON_FILEPATH = 'src/ml_info.json'
 SETTINGS_PATH = 'config.ini'
 if getattr(sys, 'frozen', True):
-    JSON_FILEPATH = Path(sys._MEIPASS) / "src" / "ml_info.json"
-    SETTINGS_PATH = f"{Path(sys._MEIPASS).parent}/config.ini"
+    try:
+        JSON_FILEPATH = Path(sys._MEIPASS) / "src" / "ml_info.json"
+        SETTINGS_PATH = f"{Path(sys._MEIPASS).parent}/config.ini"
+    except AttributeError as error:
+        print(f"{error}. Expected to be running as script, not frozen.")
+
 maps = MapsJson(JSON_FILEPATH)
 try: 
     """
@@ -132,8 +136,9 @@ class GlobalVars:
         'no-cheats' : '-nocheats',
         'no-monst' : '-nomonsters',
     }
+    O_STDOUT = ''
+    O_STDERR = ''
 SKILL_OPTIONS = ("I'm too young to die", "Hey, not too rough", 
                  "Hurt me plenty", "Ultra-Violence", "Nightmare!")
 # STDOUT, STDERR
-O_STDOUT = ''
-O_STDERR = ''
+

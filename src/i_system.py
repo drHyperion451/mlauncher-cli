@@ -29,3 +29,10 @@ def str_to_bool(s:str) -> bool:
             return True
         case _:
             raise Exception('str_to_bool error: Parsing string error')
+
+def openBrowser(url:str) -> None:
+    match OS:
+        case 'Windows' | 'Linux':
+            webbrowser.open_new_tab(url)
+        case 'Darwin':
+            os.system(f'open {url}')
