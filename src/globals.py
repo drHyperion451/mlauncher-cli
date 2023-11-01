@@ -136,8 +136,20 @@ class GlobalVars:
         'no-cheats' : '-nocheats',
         'no-monst' : '-nomonsters',
     }
-    O_STDOUT = ''
-    O_STDERR = ''
+    O_STDOUT = 'Nothing here to show!'
+    O_STDERR = 'It will appear errors here:'
+    O_STDERR = """\
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis turpis vitae pretium lacinia. In sit amet tellus auctor, luctus mi sit amet, auctor risus. In semper augue at ornare tincidunt. Aliquam dictum ultricies erat, quis feugiat nisl molestie non. Integer sed ipsum sit amet dolor rhoncus pulvinar. In maximus pulvinar tincidunt. Donec vulputate vel tellus et laoreet.
+
+In a turpis vestibulum erat semper cursus nec a augue. Quisque id rutrum felis. Pellentesque molestie ligula et justo tempor, ut vestibulum neque porttitor. Maecenas mattis nisi vitae facilisis rutrum. Nullam eget quam eu lacus rutrum bibendum nec a sapien. Proin vestibulum posuere turpis vel tempus. Aenean eget tristique justo. Mauris vel tincidunt turpis. Mauris suscipit vel eros eu pretium. Integer at metus non metus tincidunt rutrum. Etiam vel elit vel arcu faucibus auctor et at est. Suspendisse vel egestas tortor, at varius enim. Sed egestas hendrerit lacus, sit amet vestibulum lorem sollicitudin malesuada. Vivamus consequat vehicula ornare. Morbi tincidunt tellus vel lobortis porta. Fusce sit amet quam vitae metus mollis bibendum.
+
+Aliquam vel sem eu tellus porta molestie eget at mi. Duis pulvinar in sapien ac posuere. Nunc luctus diam id justo congue, in suscipit ligula porttitor. Integer lacus felis, euismod non leo at, sagittis auctor tellus. Etiam tristique, nisl at iaculis volutpat, lacus ante fermentum elit, dapibus aliquam ipsum eros tincidunt velit. Phasellus congue elit sed turpis sodales vehicula. Quisque volutpat sollicitudin lorem, ac auctor leo scelerisque ac.
+
+Mauris egestas, dui in vehicula laoreet, nunc enim laoreet dui, at laoreet purus massa id lectus. Aliquam leo dolor, auctor porttitor dignissim sit amet, ornare sit amet erat. Nullam imperdiet arcu ac justo dapibus condimentum. Etiam egestas hendrerit dui, a fringilla nisl. Cras sagittis odio vitae turpis hendrerit, eget dapibus nulla dapibus. Curabitur in posuere velit, ac faucibus est. Aliquam erat volutpat. Vestibulum velit velit, auctor fermentum volutpat at, feugiat a erat. Fusce quis elementum est.
+
+In at dui vestibulum, commodo nibh ac, elementum elit. Sed scelerisque risus sit amet ante posuere dapibus. Nulla vel libero quis ex iaculis vestibulum a eu metus. Quisque mollis tellus metus, ut placerat justo semper placerat. Aenean quis cursus nulla. In hac habitasse platea dictumst. Sed bibendum condimentum tellus in vehicula. Nunc at orci eget sapien faucibus convallis id ut nibh. Cras nec elit dolor. Praesent cursus magna id justo tincidunt accumsan. Nam tincidunt lorem dui, a iaculis magna auctor nec. Sed porttitor sit amet leo eu condimentum. 
+"""
+
 SKILL_OPTIONS = ("I'm too young to die", "Hey, not too rough", 
                  "Hurt me plenty", "Ultra-Violence", "Nightmare!")
 # STDOUT, STDERR
