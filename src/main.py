@@ -18,6 +18,7 @@ from globals import GlobalVars, SETTINGS_PATH
 from s_game import GameScreen
 from s_wads import WadsScreen
 from s_settings import SettingsScreen
+from s_about import AboutScreen
 from s_quit import QuitScreen
 
 # Note: CSS id SHOULD be the same name as the class... wasted 2h of my life
@@ -31,7 +32,8 @@ class MenuHeader(Static):
             Button("Wads", "primary", id="wadsButton", classes='menuButtons', disabled=False),
             Button("Options", "primary", id="optionsButton", classes='menuButtons', disabled=False),
             #Button("Console Output", "warning", id="consoleLogButton", classes='menuButtons', disabled=False),
-            Button("Quit", "error", id="menuQuitButton", classes='menuButtons')
+            Button("About", "primary", id='menuAboutButton', classes='menuButtons'),
+            Button("Quit", "error", id="menuQuitButton", classes='menuButtons'),
         )
     def on_button_pressed(self, event: Button.Pressed) -> None:
         match event.button.id:
@@ -42,6 +44,8 @@ class MenuHeader(Static):
             case "optionsButton":
                 openFile(SETTINGS_PATH)
                 #self.app.push_screen(SettingsScreen(classes='DialogScreen'))
+            case "menuAboutButton":
+                self.app.push_screen(AboutScreen(classes='DialogScreen'))
             case "menuQuitButton":
                 self.app.push_screen(QuitScreen(classes='DialogScreen'))
 
@@ -134,8 +138,7 @@ if __name__ == '__main__':
     sys.stdout.write("\x1b]2;%s\x07" % 'MLauncher')
 
     # CWD to executable 
-    if getattr(sys, 'frozen', True):
-        print(sys.frozen)
+    if hasattr(sys, 'frozen'):
         os.chdir(os.path.dirname(sys.executable))
     
 

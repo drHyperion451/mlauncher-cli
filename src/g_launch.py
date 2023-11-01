@@ -43,9 +43,9 @@ def game (sourcePort:str, iwad:str, extraPwads:str | None = None) -> str:
     completed_process = subprocess.run(cmdList, capture_output=True, text=True)
     
     # This will handle properly if errors had happened or not.
-    O_STDERR = completed_process.stderr
-    O_STDOUT = completed_process.stdout
-    O_STDOUT, O_STDERR, cmdList
+    GlobalVars.O_STDERR = completed_process.stderr
+    GlobalVars.O_STDOUT = completed_process.stdout
+
     
     
 

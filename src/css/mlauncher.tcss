@@ -4,6 +4,10 @@ MenuHeader {
     dock: top;
     content-align: right middle;
 }
+#menuAboutButton {
+    
+    
+}
 #menuQuitButton {
     dock: right;
     margin-right: 0
@@ -104,7 +108,6 @@ OptionsScreen {
 .dialogGrid {
     border: thick $background 80%;
     background: $surface;
-
 }
 #game-dialog{
     width: 90%;
@@ -127,7 +130,22 @@ OptionsScreen {
     margin: 1 0;
     text-align: right;
 }
+#about-dialog {
+    overflow-y: scroll;
+    layout: vertical;
+    width: 90%;
+    height: 90%;
+}
+#about-dialog > Horizontal {
+    height: 3;
+}
+.md-center {
+    align-horizontal: center
+}
 
+#about-buttons Button {
+    margin-left: 9
+}
 #closeDialog {
     grid-gutter: 1 2;
     grid-size: 2;
