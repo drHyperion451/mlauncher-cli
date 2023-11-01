@@ -7,16 +7,20 @@ from i_jsonUtils import MapsJson
 home = Path.home()
 JSON_FILEPATH = 'src/ml_info.json'
 SETTINGS_PATH = 'config.ini'
+if getattr(sys, 'frozen', True):
+    JSON_FILEPATH = Path(sys._MEIPASS) / "src" / "ml_info.json"
+    SETTINGS_PATH = f"{Path(sys._MEIPASS).parent}/config.ini"
 maps = MapsJson(JSON_FILEPATH)
 try: 
     """
     This is needed if you want to freeze the script. If not, it won't load
     correctly. 
     """
-    JSON_FILEPATH = f"{sys._MEIPASS}/src/ml_info.json"
+    JSON_FILEPATH = Path(sys._MEIPASS) / "src" / "ml_info.json"
     SETTINGS_PATH = f"{Path(sys._MEIPASS).parent}/config.ini"
 except (NameError, AttributeError) as error:
     print(f"{error}. Expected to be running as script, not frozen.")
+
 
 
 
