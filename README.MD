@@ -11,6 +11,8 @@
 <a href='https://ko-fi.com/drhyperion451' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi5.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ![Windows Screenshot](https://github.com/drHyperion451/mlauncher-cli/blob/master/assets/screenshot1.png?raw=true)
+![Gif](https://github.com/drHyperion451/mlauncher-cli/blob/master/assets/screen.gif?raw=true)
+
 
 A cross-platform, classic style DOOM launcher for [Master Levels for DOOM II](https://store.steampowered.com/app/9160/Master_Levels_for_Doom_II/).
 :feelsgood:
