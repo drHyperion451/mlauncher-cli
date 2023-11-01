@@ -1,4 +1,4 @@
-# MLauncher: Master Launcher :feelsgood:
+# MLauncher: Master Launcher
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -12,7 +12,7 @@
 ![Windows Screenshot](https://github.com/drHyperion451/mlauncher-cli/blob/master/assets/screenshot1.png?raw=true)
 
 A cross-platform, classic style DOOM launcher for [Master Levels for DOOM II](https://store.steampowered.com/app/9160/Master_Levels_for_Doom_II/).
-
+:feelsgood:
 ## Getting Started
 This proyect runs using the [`Textual`](https://textual.textualize.io) Python library to run. It should work with the compiled release, but due to python being an interpreted language it should by using the source and the python IDLE.
 ### Prerequisites:
