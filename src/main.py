@@ -134,7 +134,8 @@ if __name__ == '__main__':
     sys.stdout.write("\x1b]2;%s\x07" % 'MLauncher')
 
     # CWD to executable 
-    if getattr(sys, 'frozen', False):
+    if getattr(sys, 'frozen', True):
+        print(sys.frozen)
         os.chdir(os.path.dirname(sys.executable))
     
 
