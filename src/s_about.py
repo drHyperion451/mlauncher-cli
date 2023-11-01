@@ -8,8 +8,6 @@ from i_system import openBrowser
 about_markdown_message = """\
 # MASTER LEVELS LAUNCHER: 
 A TUI launcher made for Master Levels of Doom II
-**Support Me!**
-**Source Code!**
 ### Purchase DOOM II
 * [Steam](https://store.steampowered.com/app/2300/DOOM_II/)
 * [GOG](https://www.gog.com/en/game/doom_ii)
@@ -55,4 +53,4 @@ class AboutScreen(Screen):
             case 'source-code-button':
                 openBrowser('https://github.com/drHyperion451/mlauncher-cli')
             case 'support-button':
-                openBrowser('https://github.com/drHyperion451/mlauncher-cli')
+                openBrowser('https://ko-fi.com/drhyperion451')
