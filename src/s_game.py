@@ -5,7 +5,7 @@
 from textual.app import ComposeResult
 from textual.containers import Grid
 from textual.screen import Screen
-from textual.widgets import Label, Button, Placeholder, Input, Footer
+from textual.widgets import Label, Input, Footer
 
 from globals import GlobalVars, SETTINGS_PATH
 from configparser import ConfigParser

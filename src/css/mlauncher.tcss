@@ -130,6 +130,19 @@ OptionsScreen {
     margin: 1 0;
     text-align: right;
 }
+#logs-dialog{
+    layout: horizontal;
+    grid-size: 2 1;
+    grid-gutter: 3
+}
+
+#log-dialog > Container {
+    overflow: scroll;
+}
+#logs-dialog Markdown{
+    text-align: left;
+    overflow-y: scroll;    
+}
 #about-dialog {
     overflow-y: scroll;
     layout: vertical;

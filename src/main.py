@@ -1,6 +1,6 @@
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal, VerticalScroll
-from textual.widgets import Header, Footer, Static, Button, Placeholder
+from textual.widgets import Header, Footer, Static, Button
 
 import os
 from configparser import ConfigParser
@@ -18,6 +18,7 @@ from globals import GlobalVars, SETTINGS_PATH
 from s_game import GameScreen
 from s_wads import WadsScreen
 from s_settings import SettingsScreen
+from s_logs import LogsScreen
 from s_about import AboutScreen
 from s_quit import QuitScreen
 
@@ -31,6 +32,7 @@ class MenuHeader(Static):
             Button("Game", "primary", id="gameButton", classes='menuButtons', disabled=False),
             Button("Wads", "primary", id="wadsButton", classes='menuButtons', disabled=False),
             Button("Options", "primary", id="optionsButton", classes='menuButtons', disabled=False),
+            Button("Logs", "warning", id="logsButton", classes='menuButtons', disabled=False),
             #Button("Console Output", "warning", id="consoleLogButton", classes='menuButtons', disabled=False),
             Button("About", "primary", id='menuAboutButton', classes='menuButtons'),
             Button("Quit", "error", id="menuQuitButton", classes='menuButtons'),
@@ -44,6 +46,8 @@ class MenuHeader(Static):
             case "optionsButton":
                 openFile(SETTINGS_PATH)
                 #self.app.push_screen(SettingsScreen(classes='DialogScreen'))
+            case "logsButton":
+                self.app.push_screen(LogsScreen(classes='DialogScreen'))
             case "menuAboutButton":
                 self.app.push_screen(AboutScreen(classes='DialogScreen'))
             case "menuQuitButton":

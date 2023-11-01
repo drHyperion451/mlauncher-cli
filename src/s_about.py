@@ -1,8 +1,7 @@
 from textual.app import ComposeResult
 from textual.containers import Grid, Horizontal
 from textual.screen import Screen
-from textual.widgets import Label, Button, Footer, Markdown
-from rich.emoji import Emoji
+from textual.widgets import Button, Footer, Markdown
 
 from i_system import openBrowser
 

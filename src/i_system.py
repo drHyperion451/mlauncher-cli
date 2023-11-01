@@ -1,6 +1,8 @@
 import platform
 import os
 import webbrowser
+import textwrap
+
 OS = platform.system()
 
 def openFile(filePath):
@@ -36,3 +38,9 @@ def openBrowser(url:str) -> None:
             webbrowser.open_new_tab(url)
         case 'Darwin':
             os.system(f'open {url}')
+
+def wrap_text(text, width):
+    lines = text.split('\n')
+    wrapped_lines = [textwrap.wrap(line, width) for line in lines]
+    wrapped_text = '\n'.join(['\n'.join(line) for line in wrapped_lines])
+    return wrapped_text
