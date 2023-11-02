@@ -76,6 +76,20 @@ Inside `config.ini` file the info is organized inside keys. GUI settings are pla
 - `iwad` = Relative path of DOOM2 iwad. Default is: `./doom2/DOOM2.WAD`
 - `ml_path` = Relative path of all the wads. Default is `./master/wads`
 
+### Adding more maps and the rejected levels:
+You can easily add any other map you want or even add the [rejected levels](https://doomwiki.org/wiki/Master_Levels_for_Doom_II#Rejected_levels) to the list by editing the `_internal/src/ml_info.json` file and add your levels there:
+```json
+      {
+        "WAD": "WADNAME.WAD",
+        "Name": "Title of the wad fil",
+        "Author": "It is obvious",
+        "PC": 1, #PC slot, where you need to warp to make the auto warp work
+        "PSX": null, # Irrelevant
+        "Xbox": 14, # Irrelevant
+        "PSN": 20 # PSN slot. Makes this in order.
+      }
+```
+
 
 ### Building
 Building is a mess right now because of some differences between OS and Textual not been detected by default on my system. A work is on the way to fix this.
