@@ -20,11 +20,14 @@ class GameScreen(Screen):
                 Input(value=GlobalVars.SOURCEPORT, id='source-port-input'),
                 Label('iWad selector: '),
                 Input(value=GlobalVars.IWAD, id='iwad-input'),
+                Label('Other files: '),
+                Input(value=GlobalVars.FILES, id='file-input'),
                 id='game-dialog-options',
                 classes='dialog-options'
             ),
             Label("Paste the path here. You can edit them on the \
-config.ini file too."),
+config.ini file too. Add more than 1 file between commas ('') and \
+separated by an space."),
             id='game-dialog',
             classes='dialogGrid'
         )
@@ -39,5 +42,8 @@ config.ini file too."),
             case 'iwad-input':
                 GlobalVars.IWAD = event.input.value
                 config.set('GAME', 'IWAD', str(event.input.value))
+            case 'file-input':
+                GlobalVars.FILES = event.input.value
+                config.set('GAME', 'FILES', str(event.input.value))
         with open(SETTINGS_PATH, 'w') as configfile:
                     config.write(configfile)
