@@ -111,7 +111,7 @@ OptionsScreen {
 }
 #game-dialog{
     width: 90%;
-    height: 60%;
+    height: 90%;
     layout: vertical;
 }
 
