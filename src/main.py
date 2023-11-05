@@ -101,7 +101,7 @@ class pwadContents(Static):
         if event.button.id == 'launchButton':
             if GlobalVars.SELECTED_MAP:
                 master_wad = f"{GlobalVars.ML_PATH}/{GlobalVars.SELECTED_MAP}"
-                g_launch.game(GlobalVars.SOURCEPORT, GlobalVars.IWAD, master_wad)
+                g_launch.game(GlobalVars.SOURCEPORT, GlobalVars.IWAD, f"{master_wad} {GlobalVars.FILES}")
                 config.set('GAME', 'SELECTED_MAP', GlobalVars.SELECTED_MAP)
                 config.set('GAME', 'SKILL', str(GlobalVars.SKILL))
                 #config.set('GAME', 'WARP', WARP)

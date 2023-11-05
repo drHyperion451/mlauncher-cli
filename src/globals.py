@@ -64,6 +64,7 @@ SETTINGS_GAME:dict = {
     'SOURCEPORT': './dsda-doom/dsda-doom.exe',
     'IWAD': './doom2/DOOM2.WAD',
     'ML_PATH': './master/wads',
+    'FILES': '',
     'SELECTED_MAP': 'ATTACK.WAD',
     'FILES': '',
     'SKILL': 4,
@@ -104,6 +105,7 @@ class GlobalVars:
 # For persistence when saving the game
     SOURCEPORT = config.get('GAME', 'SOURCEPORT')
     IWAD = config.get('GAME', 'IWAD')
+    FILES = config.get('GAME', 'FILES')
     ML_PATH = config.get('GAME', 'ML_PATH')
     FILES = config.get('GAME', 'FILES')
     SELECTED_MAP = config.get('GAME', 'SELECTED_MAP')
