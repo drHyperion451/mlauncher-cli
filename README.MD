@@ -83,13 +83,15 @@ You can easily add any other map you want or even add the [rejected levels](http
         "WAD": "WADNAME.WAD",
         "Name": "Title of the wad fil",
         "Author": "It is obvious",
-        "PC": 1, #PC slot, where you need to warp to make the auto warp work
-        "PSX": null, # Irrelevant
-        "Xbox": 14, # Irrelevant
-        "PSN": 20 # PSN slot. Makes this in order.
+        "PC": 1, 
+        "PSX": null, 
+        "Xbox": 14, 
+        "PSN": 21
       }
 ```
-
+PC is the map slot where the map is located. Fill this if you want the auto-warp button to work properly.
+PSX and xbox are irrelevant.
+PSN is used to order all the levels in other order than A-Z. Use this to custom order your wads. TEETH.WAD uses the last slot, 21.
 
 ### Building
 Building is a mess right now because of some differences between OS and Textual not been detected by default on my system. A work is on the way to fix this.
